@@ -14,9 +14,6 @@ contract Multisig{
     mapping(address => bool) public isOwner; 
     mapping(address => bool) public isConfirmedBy; 
     mapping(uint => uint) public currentNumConfirmations; 
- 
-    //mapping(uint => uint) public currentNumConfirmation; // txID => numberOfConfirmations 
- 
     mapping(uint => Transactions) public executedTransactions; 
  
     event Deposit(address indexed _from, uint indexed _value, uint indexed _at); 
@@ -27,7 +24,7 @@ contract Multisig{
     struct Transactions { 
         address to; 
         uint amount; 
-  uint time; 
+        uint time; 
     } 
  
     modifier onlyAdmin() { 
@@ -48,8 +45,8 @@ contract Multisig{
  
         requiredConfirmations = 2; 
         ownerSize = 2; // initial size of owners is 2 (admin + second declared on constructor) 
- //  numConfirmations = _numConfirmations; // anyway 2 
-    //     require(numConfirmations >= 2 && numConfirmations <= ownerSize, "Number of confirmations should be between two and number of owners"); 
+        // numConfirmations = _numConfirmations; // anyway 2 
+        // require(numConfirmations >= 2 && numConfirmations <= ownerSize, "Number of confirmations should be between two and number of owners"); 
     } 
  
     function changeNumConfirmations(uint _requiredConfirmations) public onlyAdmin { 
@@ -77,37 +74,7 @@ contract Multisig{
  
     function getBalance() public view returns(uint) { 
         return address(this).balance; 
-    } 
- 
-// add transaction id with struct and return id then 
-// add confirmations[txID]++; 
- 
-/////////////////////////////////// 
-    // function confirm(address _to, uint _amount) public ownersORadmin(msg.sender) returns(uint) { 
-    //     isConfirmedBy[msg.sender] = true; 
-         
- //  uint txID = uint(keccak256(abi.encodePacked(_to, _amount, block.timestamp))); // 
-   
- //  currentNumConfirmation[txID]++; 
- //  return txID; 
-    // } 
- 
- // function revokeConfirmation() public { 
-   
- // } 
- 
-    // function withdrawn(uint _txID, address _to, uint _amount) public payable { 
-    //     require(isConfirmedBy[admin], "Not confirmed by admin yet"); 
- //  //require(currentNumConfirmation[_txID] == numConfirmations, "Not the required number of confirmations"); 
-   
- //   transaction[currentNumConfirmation[_txID]] = Transaction( 
- //   { 
- //    to: _to, 
- //    amount: _amount, 
- //    time: block.timestamp 
- //   } 
- //  ); 
-    // } 
+    }
  
     function createTxID() public view onlyAdmin returns(uint) { 
         uint txID = uint(keccak256(abi.encodePacked(block.timestamp))); 
