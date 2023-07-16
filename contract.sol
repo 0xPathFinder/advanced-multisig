@@ -7,9 +7,9 @@ contract Multisig{
  
     uint public requiredConfirmations;  
  
-    uint public ownerSize; // remove public 
+    uint public ownerSize;
  
-    address public second; // remove public 
+    address second;
  
     mapping(address => bool) public isOwner; 
     mapping(address => bool) public isConfirmedBy; 
@@ -18,14 +18,14 @@ contract Multisig{
  
     event Deposit(address indexed _from, uint indexed _value, uint indexed _at); 
     event Confirmed(address indexed _from); // event to confirm() 
-    event Revoked(address indexed _from); 
+    event Revoked(address indexed _from);
     event Withdrawn(address indexed _to, uint indexed _value, uint indexed _at); 
  
     struct Transactions { 
         address to; 
         uint amount; 
         uint time; 
-    } 
+    }
  
     modifier onlyAdmin() { 
         require(msg.sender == admin, "Not Admin"); 
@@ -44,9 +44,7 @@ contract Multisig{
         isOwner[_owner] = true; 
  
         requiredConfirmations = 2; 
-        ownerSize = 2; // initial size of owners is 2 (admin + second declared on constructor) 
-        // numConfirmations = _numConfirmations; // anyway 2 
-        // require(numConfirmations >= 2 && numConfirmations <= ownerSize, "Number of confirmations should be between two and number of owners"); 
+        ownerSize = 2; // initial size of owners is 2 (admin + second declared on constructor)
     } 
  
     function changeNumConfirmations(uint _requiredConfirmations) public onlyAdmin { 
