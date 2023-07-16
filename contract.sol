@@ -114,8 +114,7 @@ contract Multisig{
         return txID; 
     } 
  
-    function confirm(uint _txID) public ownersORadmin(msg.sender)
-{ 
+    function confirm(uint _txID) public ownersORadmin(msg.sender) { 
         require(!isConfirmedBy[msg.sender],"Already confirmed"); 
         isConfirmedBy[msg.sender] = true; 
         currentNumConfirmations[_txID]++; 
@@ -152,4 +151,4 @@ contract Multisig{
         emit Deposit(msg.sender, msg.value, block.timestamp); 
     } 
  
-} 
+}
