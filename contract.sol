@@ -45,7 +45,7 @@ contract Multisig{
         isOwner[_owner] = true; 
  
         requiredConfirmations = 2; 
-        ownerSize = 2; // initial size of owners is 2 (admin + second declared on constructor)
+        ownerSize = 2;
     } 
  
     function changeNumConfirmations(uint _requiredConfirmations) external onlyAdmin { 
@@ -67,10 +67,6 @@ contract Multisig{
         require(_owner != second, "This address cannot be removed");
         require(isOwner[_owner], "Owner not exist");
         isOwner[_owner] = false;
-        for(uint i = 0; i < numOfAddresses; i++){
-            
-        }
-
         numOfAddresses--;
         ownerSize--;
          
