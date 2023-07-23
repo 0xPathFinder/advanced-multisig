@@ -7,7 +7,6 @@
 - Possibility to change the number of confirmations
 - Generating unique transaction ID
 - Advanced Owner and Confirmation Tracking system
-- etc.
 
 ---
 **Highly recommend checking code manually before deploying on Ethereum**
