@@ -4,10 +4,10 @@
 - Storing data of every executed transaction
 - Adding and removing owners
 - Event logging for Deposit, Confirmation, Revoking, and Withdrawal
-- Possiility to change numbers of confirmations
+- Possibility to change the number of confirmations
 - Generating unique transaction ID
 - Advanced Owner and Confirmation Tracking system
 - etc.
 
 ---
-**Highly recommend to check code manually before deploying on Ethereum**
+**Highly recommend checking code manually before deploying on Ethereum**
